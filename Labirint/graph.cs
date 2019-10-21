@@ -12,13 +12,13 @@ namespace Labirint
 
         //в эелементе графа содержится:
         //прошлая задача, номер робота, номер текущей задачи
-        int number_roobot;
-        int task_number;
-        int current_task_number;
+        int _numberRoobot;
+        int _taskNumber;
+        int _currentTaskNumber;
         //список - сам граф
-        List<Task> roster = new List<Task>();
+        List<Task> _roster = new List<Task>();
         //добавление задачи
-        public void add_task(int task_number, int number_roobot)
+        public void add_task(int taskNumber, int numberRoobot)
         {
             //номер задачи
             //"вес ребра"

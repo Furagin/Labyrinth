@@ -9,12 +9,12 @@ namespace Labirint
     class Task
     {
         //статус задачи
-        bool enable;
+        bool _enable;
         //свойства задачи
         //номер задачи по обноружению
-        int taskRumber;
+        int _taskRumber;
         //номер выполневшего/резервировавшего робота
-        int numberRobot;
+        int _numberRobot;
         //емкость, количство проходов и т.д.
         //смежные задачи
         //метод добавления задачи
@@ -28,9 +28,9 @@ namespace Labirint
 
         }
         //метод резервирования задачи
-        public void ReserveTask(int number_robot)
+        public void ReserveTask(int numberRobot)
         {
-            enable = false;
+            _enable = false;
         }
     }
 }

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Labirint
 {
-    public class Robot_exp
+    public class RobotExp
     {
         //номер робота
-        int number;
+        int _number;
         //координаты робота
-        int x, y;
+        int _x, _y;
         //текущая задача
-        Task currentTask;
+        Task _currentTask;
         //статус
-        Status currentStatus;
+        Status _currentStatus;
         //граф задач робота
-        Graph localGraph;
+        Graph _localGraph;
         //конструктор класса
-        public Robot_exp()
+        public RobotExp()
         {
             //номер робота
             int number;
