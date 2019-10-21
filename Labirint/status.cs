@@ -8,8 +8,8 @@ namespace Labirint
 {
     class Status
     {
-        bool _free;
-        bool _work;
+        bool free;
+        bool work;
         public Status()
         {
             bool free = true;

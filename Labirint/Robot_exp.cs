@@ -11,7 +11,7 @@ namespace Labirint
         //номер робота
         int _number;
         //координаты робота
-        int _x, _y;
+        private int _x, _y;
         //текущая задача
         Task _currentTask;
         //статус
@@ -19,12 +19,14 @@ namespace Labirint
         //граф задач робота
         Graph _localGraph;
         //конструктор класса
-        public RobotExp()
+        public RobotExp(int x, int y)
         {
+            _x = x;
+            _y = y;
             //номер робота
             int number;
             //координаты робота
-            int x, y;
+            //int x, y;
             //текущая задача
             Task currentTask = new Task();
             //статус
