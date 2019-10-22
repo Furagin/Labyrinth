@@ -9,7 +9,7 @@ namespace Labirint
     public class RobotExp
     {
         //номер робота
-        int _number;
+        private int _number;
         //координаты робота
         private int _x, _y;
         //текущая задача
@@ -24,15 +24,15 @@ namespace Labirint
             _x = x;
             _y = y;
             //номер робота
-            int number;
+            _number = 0;
             //координаты робота
             //int x, y;
             //текущая задача
-            Task currentTask = new Task();
+            _currentTask = new Task();
             //статус
-            Status currentStatus = new Status();
+            _currentStatus = new Status();
             //граф задач робота
-            Graph localGraph = new Graph();
+            _localGraph = new Graph();
         }        
         //цвет
         
