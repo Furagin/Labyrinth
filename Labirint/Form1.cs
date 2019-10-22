@@ -13,6 +13,8 @@ namespace Labirint
 {
     public partial class Form1 : Form
     {
+        //Карта лабиринта
+        Map _generalMap = new Map();
         //размеры карты
         public int XRange,YRange;
         public Form1()
@@ -27,7 +29,6 @@ namespace Labirint
             //вывод на передний план окна ввода карты
             textBox8.BringToFront();
             textBox8.Text = "";
-            //
         }
         //Загрузка карты
         private void button2_Click(object sender, EventArgs e)
@@ -40,20 +41,28 @@ namespace Labirint
             //получение адреса
             string adress = get_adress(fileName);
             //чтение файла
-            System.IO.StreamReader file = new System.IO.StreamReader(@adress);
-            string line;
-            textBox8.Text = "";
-            for(int i = 0; (line = file.ReadLine()) != null ;i++)
+            try
             {
-                //чтение размеров карты
-                if(i == 0) { textBox3.Text = line; }
-                else if(i == 1) { textBox4.Text = line; }
-                //заполнение карты
-                else
+                System.IO.StreamReader file = new System.IO.StreamReader(@adress);
+                string line;
+                textBox8.Text = "";
+                for (int i = 0; (line = file.ReadLine()) != null; i++)
                 {
-                    textBox8.Text += line + Environment.NewLine;
+                    //чтение размеров карты
+                    if (i == 0) { textBox3.Text = line; }
+                    else if (i == 1) { textBox4.Text = line; }
+                    //заполнение карты
+                    else
+                    {
+                        textBox8.Text += line + Environment.NewLine;
+                    }
                 }
             }
+            catch
+            {
+                textBox5.Text = "Ошибка в открытии файла.";
+            }
+            
         }
         //Сохранение карты
         private void button3_Click(object sender, EventArgs e)
@@ -88,8 +97,6 @@ namespace Labirint
             }            
 
         }
-        //Карта лабиринта
-        Map _generalMap = new Map();
         //Инициализация обхода лабиринта
         private void button4_Click(object sender, EventArgs e)
         {

@@ -9,18 +9,19 @@ namespace Labirint
     class Task
     {
         //статус задачи
-        bool _enable;
+        private bool _enable { get; set; }
+
         //свойства задачи
         //номер задачи по обноружению
-        int _taskRumber;
+        private int _taskRumber { get; set; }
         //номер выполневшего/резервировавшего робота
-        int _numberRobot;
+        private int _numberRobot { get; set; }
         //емкость, количство проходов и т.д.
         //смежные задачи
         //метод добавления задачи
-        public void CreateTask()
+        public Task()
         {
-
+            _enable = true;
         }
         //метод удаления задачи
         public void RemoveTask()
