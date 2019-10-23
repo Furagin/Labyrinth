@@ -9,33 +9,37 @@ namespace Labirint
     public class RobotExp
     {
         //номер робота
-        private int _number;
+        private int number;
         //координаты робота
-        private int _x, _y;
+        private int x, y;
         //текущая задача
-        Task _currentTask;
+        Task currentTask;
         //статус
-        Status _currentStatus;
+        Status currentStatus;
         //граф задач робота
-        Graph _localGraph;
+        Graph localGraph;
+        //цвет для отрисовки
+
         //конструктор класса
         public RobotExp(int x, int y)
         {
-            _x = x;
-            _y = y;
-            //номер робота
-            _number = 0;
-            //координаты робота
-            //int x, y;
-            //текущая задача
-            _currentTask = new Task();
-            //статус
-            _currentStatus = new Status();
-            //граф задач робота
-            _localGraph = new Graph();
-        }        
-        //цвет
-        
+            this.x = x;
+            this.y = y;
+            number = 0;
+            currentTask = new Task();
+            currentStatus = new Status();
+            localGraph = new Graph();
+        }       
+        //Установка и получение номера
+        public void SetAgentNumber(int newNumber)
+        {
+            number = newNumber;
+        }
+        //
+        public int GetAgentNumber()
+        {
+            return number;
+        }
         //функция движения
         public void Move()
         {

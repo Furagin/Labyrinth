@@ -13,21 +13,21 @@ namespace Labirint
     class Map
     {
         //размер карты (число строк и стобцов)
-        int _xRange = 0;
-        int _yRange = 0;
+        int xRange = 0;
+        int yRange = 0;
         //размер клеток в пикселях
-        float _penXSize = 15, _penYSize = 15;
+        float penXSize = 15, penYSize = 15;
         //метод установки масштаба карты
         //матрица карты
         public int[,] MapCoord;// = new int[x_range, y_range];
-        private void set_range(int x, int y)
+        private void SetRange(int x, int y)
         {
-            _xRange = x;
-            _yRange = y;
-            MapCoord = new int[_xRange, _yRange];
+            xRange = x;
+            yRange = y;
+            MapCoord = new int[xRange, yRange];
         }        
         //метод установки карты
-        private void set_map(string textMap)
+        private void SetMap(string textMap)
         {
             //конец 
             bool endMap = false;
@@ -36,16 +36,16 @@ namespace Labirint
             mapChar = textMap.ToCharArray(0,textMap.Length);            
             //разбиение карты на строки
             //разбиение строк на элементы и перенос 
-            for(int i = 0; i<_xRange; i++)
+            for(int i = 0; i<xRange; i++)
             {
                 //переменная для прохода символьного массива
                 int k = 0;
-                for (int j=0; j<_yRange; j++)
+                for (int j=0; j<yRange; j++)
                 {
-                    if ((mapChar[i * _yRange + k] == '\n') || (mapChar[i * _yRange + k] == '\r')) { k+=2; }
-                    if ((mapChar[i * _yRange + k]!='\n')&&(mapChar[i * _yRange + k] != '\r'))
+                    if ((mapChar[i * yRange + k] == '\n') || (mapChar[i * yRange + k] == '\r')) { k+=2; }
+                    if ((mapChar[i * yRange + k]!='\n')&&(mapChar[i * yRange + k] != '\r'))
                     {
-                        MapCoord[i, j] = (int)Char.GetNumericValue(mapChar[i * _yRange + k]);                        
+                        MapCoord[i, j] = (int)Char.GetNumericValue(mapChar[i * yRange + k]);                        
                     }
                     //if ((map_char[i * y_range + k] == '\n') || (map_char[i * y_range + k] == '\r')) { k--; }
                     k++;
@@ -56,16 +56,16 @@ namespace Labirint
                        
         }
         //метод изменения карты
-        public void change_map(string textMap)
+        public void ChangeMap(string textMap)
         {
 
         }
         //метод проверки карты
-        public void output_map(int[,] mapCoord, TextBox texBoxN)
+        public void OutputMap(int[,] mapCoord, TextBox texBoxN)
         {
-            for(int i = 0; i < _xRange; i++)
+            for(int i = 0; i < xRange; i++)
             {
-                for(int j = 0; j < _yRange; j++)
+                for(int j = 0; j < yRange; j++)
                 {
                     texBoxN.Text += mapCoord[i, j];
                 }
@@ -73,7 +73,7 @@ namespace Labirint
             }
         }
         //метод отрисовки карты
-        public void draw_map(PictureBox pictureBoxN, int[,] mapCoord)
+        public void DrawMap(PictureBox pictureBoxN, int[,] mapCoord)
         {
             //настройка рисования
             Pen blackPen = new Pen(Color.Black);
@@ -85,19 +85,19 @@ namespace Labirint
             Brush blBrush = new HatchBrush(HatchStyle.DarkHorizontal, Color.Black);
             Brush whBrush = new HatchBrush(HatchStyle.DarkHorizontal, Color.WhiteSmoke);
             //отрисовка матрицы карты
-            for (int i = 0; i < _xRange; i++)
+            for (int i = 0; i < xRange; i++)
             {
-                for(int j = 0; j < _yRange; j++)
+                for(int j = 0; j < yRange; j++)
                 {
                     //переопределение координат
-                    sqPoint.X = _penXSize * i;
-                    sqPoint.Y = _penYSize * j;
+                    sqPoint.X = penXSize * i;
+                    sqPoint.Y = penYSize * j;
                     polygonSetting[0] = sqPoint;
-                    sqPoint.Y += _penYSize;
+                    sqPoint.Y += penYSize;
                     polygonSetting[1] = sqPoint;
-                    sqPoint.X += _penXSize;
+                    sqPoint.X += penXSize;
                     polygonSetting[2] = sqPoint;
-                    sqPoint.Y -= _penYSize;
+                    sqPoint.Y -= penYSize;
                     polygonSetting[3] = sqPoint;
                     //коридоры
                     if (mapCoord[i, j] == 1)
@@ -116,16 +116,16 @@ namespace Labirint
             }
         }
         //метод переокраски карты
-        public void change_draw_map(string textMap)
+        public void ChangeDrawMap(string textMap)
         {
 
         }
         //создание карты по параметрам
-        public void create_map(int x, int y, string textMap, TextBox textBoxN)
+        public void CreateMap(int x, int y, string textMap, TextBox textBoxN)
         {
-            set_range(x, y);
-            set_map(textMap);
-            output_map(MapCoord, textBoxN);
+            SetRange(x, y);
+            SetMap(textMap);
+            OutputMap(MapCoord, textBoxN);
         }
         
     }

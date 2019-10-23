@@ -13,10 +13,10 @@ namespace Labirint
 {
     public partial class Form1 : Form
     {
-        //Карта лабиринта
-        Map _generalMap = new Map();
+        //Инициализация системы
+        Mras generalSystem = new Mras();
         //размеры карты
-        public int XRange,YRange;
+        //public int XRange,YRange;
         public Form1()
         {
             InitializeComponent();
@@ -101,11 +101,11 @@ namespace Labirint
         private void button4_Click(object sender, EventArgs e)
         {
             pictureBox1.BringToFront();
-            XRange = int.Parse(textBox3.Text);
-            YRange = int.Parse(textBox4.Text);
-            _generalMap.create_map(XRange, YRange, textBox8.Text, textBox9);
+            int xRange = int.Parse(textBox3.Text);
+            int yRange = int.Parse(textBox4.Text);
+            generalSystem.GlobalMap.CreateMap(xRange, yRange, textBox8.Text, textBox9);
             //отрисовка карты в пикчербокс1
-            _generalMap.draw_map(pictureBox1, _generalMap.MapCoord);
+            generalSystem.GlobalMap.DrawMap(pictureBox1, generalSystem.GlobalMap.MapCoord);
             //вызов дополнительного окна (робот, локальная карта, граф)
             //инициализация обхода
             //граф обхода лабиринта
@@ -116,15 +116,16 @@ namespace Labirint
             try
             {
                robotCount = int.Parse(textBox1.Text);
+               generalSystem.SetAgentCount(robotCount);
             }
             catch
             {
                 //ничего не происходит
                 //число роботов все еще 1
-                robotCount = 1;
+                textBox5.Text = "Количество агентов - 1";
             }
             //массив роботов
-            RobotExp[] robotArray = new RobotExp[robotCount];
+            //RobotExp[] robotArray = new RobotExp[robotCount];
             
         }
         
@@ -132,6 +133,7 @@ namespace Labirint
         {
             //Тык по названию "х"
             //Ничего не происходит
+            //так и должно быть
         }
         //Вывоз справки
         private void button5_Click(object sender, EventArgs e)
