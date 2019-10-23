@@ -54,9 +54,10 @@
     </Compile>
     <Compile Include="Graph.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MRAS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Robot_exp.cs" />
+    <Compile Include="RobotExp.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="Task.cs" />
     <EmbeddedResource Include="Form1.resx">

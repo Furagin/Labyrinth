@@ -8,29 +8,29 @@ namespace Labirint
 {
     class Status
     {
-        private bool free;
-        private bool work;
+        private bool _free;
+        private bool _work;
         public Status()
         {
-            free = true;
-            work = true;
+            _free = true;
+            _work = true;
         }
         //статус "свободен"
         public void Enable()
         {
-            free = true;
+            _free = true;
         }
         //статус "занят"
         public void Busy()
         {
-            free = false;
+            _free = false;
         }
         //статус "не работает"
         //пригодится при добавлении проходимости
         //и лимита топлива
         public void NotWork()
         {
-            work = false;
+            _work = false;
         }
     }
 }
