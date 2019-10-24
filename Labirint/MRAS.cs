@@ -43,7 +43,7 @@ namespace Labirint
             xStart = xS;
             yStart = yS;
         }
-        //
+        //создание списка агентов системы 
         public void CreateAgentList()
         {
             //формирование пула агентов с указанием начального положения

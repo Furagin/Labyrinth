@@ -78,7 +78,7 @@ namespace Labirint
             //проверка наличия файла
             if (File.Exists(adress))
             {
-                textBox5.Text = "Файл уже существует";
+                textBox5.Text = "Файл с таким именем существует";
             }
             else
             {
@@ -103,6 +103,7 @@ namespace Labirint
             pictureBox1.BringToFront();
             int xRange = int.Parse(textBox3.Text);
             int yRange = int.Parse(textBox4.Text);
+            int startX, startY;
             generalSystem.GlobalMap.CreateMap(xRange, yRange, textBox8.Text, textBox9);
             //отрисовка карты в пикчербокс1
             generalSystem.GlobalMap.DrawMap(pictureBox1, generalSystem.GlobalMap.MapCoord);
@@ -117,6 +118,17 @@ namespace Labirint
             {
                robotCount = int.Parse(textBox1.Text);
                generalSystem.SetAgentCount(robotCount);
+               generalSystem.CreateAgentList();
+               try
+               {
+                   startX = int.Parse(textBox6.Text);
+                   startY = int.Parse(textBox7.Text);
+                   generalSystem.SetStartCoord(startX, startY);
+               }
+               catch
+               {
+                   textBox5.Text = "Стартовая позиция не указана.";
+               }
             }
             catch
             {
