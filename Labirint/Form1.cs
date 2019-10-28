@@ -24,19 +24,19 @@ namespace Labirint
             textBox8.Multiline = true;
         }        
         //создание карты
-        private void button1_Click(object sender, EventArgs e)
+        private void createMapButton_Click(object sender, EventArgs e)
         {
             //вывод на передний план окна ввода карты
             textBox8.BringToFront();
             textBox8.Text = "";
         }
         //Загрузка карты
-        private void button2_Click(object sender, EventArgs e)
+        private void loadMapButton_Click(object sender, EventArgs e)
         {
             //вывод на передний план окна символьного отображения карты
             textBox8.BringToFront();
             //получение имени файла
-            string fileName = textBox2.Text;
+            string fileName = fileNameTextBox.Text;
             fileName += ".txt";
             //получение адреса
             string adress = get_adress(fileName);
@@ -49,8 +49,8 @@ namespace Labirint
                 for (int i = 0; (line = file.ReadLine()) != null; i++)
                 {
                     //чтение размеров карты
-                    if (i == 0) { textBox3.Text = line; }
-                    else if (i == 1) { textBox4.Text = line; }
+                    if (i == 0) { fieldX.Text = line; }
+                    else if (i == 1) { fieldY.Text = line; }
                     //заполнение карты
                     else
                     {
@@ -60,17 +60,17 @@ namespace Labirint
             }
             catch
             {
-                textBox5.Text = "Ошибка в открытии файла.";
+                InfoRowTextBox.Text = "Ошибка в открытии файла.";
             }
             
         }
         //Сохранение карты
-        private void button3_Click(object sender, EventArgs e)
+        private void saveMapButton_Click(object sender, EventArgs e)
         {
 
             textBox8.BringToFront();
             //получение имени файла
-            string fileName = textBox2.Text;
+            string fileName = fileNameTextBox.Text;
             fileName += ".txt";
             //получение адреса
             string adress = get_adress(fileName);
@@ -78,7 +78,7 @@ namespace Labirint
             //проверка наличия файла
             if (File.Exists(adress))
             {
-                textBox5.Text = "Файл с таким именем существует";
+                InfoRowTextBox.Text = "Файл с таким именем существует";
             }
             else
             {
@@ -86,9 +86,9 @@ namespace Labirint
                 using (FileStream newFile = File.Create(adress))
                 {
                     //запись в файл параметров X и Y 
-                    Byte[] mapInfoX = new UTF8Encoding(true).GetBytes(textBox3.Text+"\r\n");
+                    Byte[] mapInfoX = new UTF8Encoding(true).GetBytes(fieldX.Text+"\r\n");
                     newFile.Write(mapInfoX, 0, mapInfoX.Length);
-                    Byte[] mapInfoY = new UTF8Encoding(true).GetBytes(textBox4.Text+"\r\n");
+                    Byte[] mapInfoY = new UTF8Encoding(true).GetBytes(fieldY.Text+"\r\n");
                     newFile.Write(mapInfoY, 0, mapInfoY.Length);
                     //запись в файл карты
                     Byte[] mapInfo = new UTF8Encoding(true).GetBytes(textBox8.Text);
@@ -98,11 +98,11 @@ namespace Labirint
 
         }
         //Инициализация обхода лабиринта
-        private void button4_Click(object sender, EventArgs e)
+        private void solveLabirintButton_Click(object sender, EventArgs e)
         {
             pictureBox1.BringToFront();
-            int xRange = int.Parse(textBox3.Text);
-            int yRange = int.Parse(textBox4.Text);
+            int xRange = int.Parse(fieldX.Text);
+            int yRange = int.Parse(fieldY.Text);
             int startX, startY;
             generalSystem.GlobalMap.CreateMap(xRange, yRange, textBox8.Text, textBox9);
             //отрисовка карты в пикчербокс1
@@ -116,25 +116,25 @@ namespace Labirint
             //просмотр изменения количества роботов
             try
             {
-               robotCount = int.Parse(textBox1.Text);
+               robotCount = int.Parse(robotsCountTextBox.Text);
                generalSystem.SetAgentCount(robotCount);
                generalSystem.CreateAgentList();
                try
                {
-                   startX = int.Parse(textBox6.Text);
-                   startY = int.Parse(textBox7.Text);
+                   startX = int.Parse(this.startX.Text);
+                   startY = int.Parse(this.startY.Text);
                    generalSystem.SetStartCoord(startX, startY);
                }
                catch
                {
-                   textBox5.Text = "Стартовая позиция не указана.";
+                   InfoRowTextBox.Text = "Стартовая позиция не указана.";
                }
             }
             catch
             {
                 //ничего не происходит
                 //число роботов все еще 1
-                textBox5.Text = "Количество агентов - 1";
+                InfoRowTextBox.Text = "Количество агентов - 1";
             }
             //массив роботов
             //RobotExp[] robotArray = new RobotExp[robotCount];
@@ -148,7 +148,7 @@ namespace Labirint
             //так и должно быть
         }
         //Вывоз справки
-        private void button5_Click(object sender, EventArgs e)
+        private void infoButton_Click(object sender, EventArgs e)
         {
             textBox8.BringToFront();
             textBox8.Text = "1. Создание карты - вызов окна ввода для задания карты лабиринта" + Environment.NewLine;
@@ -180,6 +180,5 @@ namespace Labirint
             string adress = Path.GetFullPath(fileName);
             return adress;
         }
-        
     }
 }
